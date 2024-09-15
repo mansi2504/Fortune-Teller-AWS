@@ -1,0 +1,26 @@
+import json
+import random
+
+def generate_fortune():
+    random_integer = random.randint(1, 6)
+    if random_integer == 1:
+        return "You will have a great day!"
+    elif random_integer == 2:
+        return "Be patient. Good things come to those who wait."
+    elif random_integer == 3:
+        return "Adventure awaits you in the near future."
+    elif random_integer == 4:
+        return "Your creativity will shine this week."
+    elif random_integer == 5:
+        return "A financial opportunity will present itself."
+    else:
+        return "Your fortune says: Adventure awaits you in the near future."
+
+def lambda_handler(event, context):
+    fortune = generate_fortune()
+    print("Generated Fortune:", fortune)
+    response = {
+        'statusCode': 200,
+        'body': json.dumps({'fortune': fortune})
+    }
+    return response
